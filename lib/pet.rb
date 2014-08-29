@@ -14,4 +14,8 @@ class Pet
   def sold_out?
     quantity  == 0
   end
+  
+  def <=>(other_pet)
+    quantity <=> other_pet.quantity
+  end
 end
