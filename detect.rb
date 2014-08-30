@@ -1,12 +1,14 @@
-require_relative './lib/pet_store'
-require_relative './lib/pet'
+#!/usr/bin/env ruby
 
-store = PetStore.new
-store.print_inventory
+require './lib/pet_inventory'
+require './lib/pet'
+
+inventory = PetInventory.new
+inventory.display
 
 print "first pet with four legs: "
-puts store.detect{|pet| pet.legs == 4}.name
+puts inventory.detect{|pet| pet.legs == 4}.name
 
 no_pet = Pet.new('none', 0, 0)
 print "first pet with 3 legs: "
-puts store.detect(lambda{no_pet}){|pet| pet.legs == 3}.name
+puts inventory.detect(lambda{no_pet}){|pet| pet.legs == 3}.name

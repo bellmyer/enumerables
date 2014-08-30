@@ -1,14 +1,16 @@
-require_relative './lib/pet_store'
-require_relative './lib/pet'
+#!/usr/bin/env ruby
 
-store = PetStore.new
-store.print_inventory
+require './lib/pet_inventory'
+require './lib/pet'
+
+inventory = PetInventory.new
+inventory.display
 
 print "all pets have legs? "
-puts store.all?{|pet| pet.legs > 0}
+puts inventory.all?{|pet| pet.legs > 0}
 
 print "all pets are in stock? "
-puts store.all?(&:in_stock?)
+puts inventory.all?(&:in_stock?)
 
 print "all pets have at least 5 in stock? "
-puts store.all?{|pet| pet.quantity >= 5}
+puts inventory.all?{|pet| pet.quantity >= 5}

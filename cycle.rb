@@ -1,16 +1,18 @@
-require_relative './lib/pet_store'
-require_relative './lib/pet'
+#!/usr/bin/env ruby
 
-store = PetStore.new
-store.print_inventory
+require './lib/pet_inventory'
+require './lib/pet'
+
+inventory = PetInventory.new
+inventory.display
 
 puts "print pet names, twice: "
-store.cycle(2){|pet| puts pet.name}
+inventory.cycle(2){|pet| puts pet.name}
 
 start_time = Time.now
 
 puts "print pet names repeatedly, for one whole second: "
-store.cycle do |pet|
+inventory.cycle do |pet|
   puts pet.name
   break if Time.now - start_time >= 1
 end

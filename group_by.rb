@@ -6,8 +6,5 @@ require './lib/pet'
 inventory = PetInventory.new
 inventory.display
 
-print "pet names: "
-p inventory.map(&:name)
-
-print "pet leg counts: "
-p inventory.map{|pet| pet.legs}
+print "pets grouped by leg count: "
+p inventory.group_by(&legs)

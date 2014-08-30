@@ -1,11 +1,13 @@
-require_relative './lib/pet_store'
-require_relative './lib/pet'
+#!/usr/bin/env ruby
 
-store = PetStore.new
-store.print_inventory
+require './lib/pet_inventory'
+require './lib/pet'
+
+inventory = PetInventory.new
+inventory.display
 
 print "pets with the letter 'o' in the name: "
-p store.map(&:name).grep(/o/)
+p inventory.map(&:name).grep(/o/)
 
 print "first letter of each pet with the letter 'i' in the name: "
-p store.map(&:name).grep(/i/){|name| name[0]}
+p inventory.map(&:name).grep(/i/){|name| name[0]}

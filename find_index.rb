@@ -1,14 +1,16 @@
-require_relative './lib/pet_store'
-require_relative './lib/pet'
+#!/usr/bin/env ruby
 
-store = PetStore.new
-store.print_inventory
+require './lib/pet_inventory'
+require './lib/pet'
+
+inventory = PetInventory.new
+inventory.display
 
 print "index for scorpions: "
-puts store.find_index{|pet| pet.name == 'scorpion'}
+puts inventory.find_index{|pet| pet.name == 'scorpion'}
 
 print "index for first four-legged pet: "
-puts store.find_index{|pet| pet.legs == 4}
+puts inventory.find_index{|pet| pet.legs == 4}
 
 print "index for first pet with over 100 in stock: "
-puts store.find_index{|pet| pet.quantity > 100}
+puts inventory.find_index{|pet| pet.quantity > 100}

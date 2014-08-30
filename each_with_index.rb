@@ -1,8 +1,10 @@
-require_relative './lib/pet_store'
-require_relative './lib/pet'
+#!/usr/bin/env ruby
 
-store = PetStore.new
-store.print_inventory
+require './lib/pet_inventory'
+require './lib/pet'
+
+inventory = PetInventory.new
+inventory.display
 
 puts "numbered pet list: "
-store.each_with_index{|pet, i| puts "pet #{i}: #{pet.name}"}
+inventory.each_with_index{|pet, i| puts "pet #{i}: #{pet.name}"}

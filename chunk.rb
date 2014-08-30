@@ -1,10 +1,12 @@
-require_relative './lib/pet_store'
-require_relative './lib/pet'
+#!/usr/bin/env ruby
 
-store = PetStore.new
-store.print_inventory
+require './lib/pet_inventory'
+require './lib/pet'
 
-pets_by_leg_count = store.chunk(&:legs)
+inventory = PetInventory.new
+inventory.display
+
+pets_by_leg_count = inventory.chunk(&:legs)
 
 pets_by_leg_count.each do |leg_count, pet_list|
   puts "#{leg_count}: #{pet_list.map(&:name).join(',')}"

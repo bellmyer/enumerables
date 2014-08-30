@@ -1,8 +1,10 @@
-require_relative './lib/pet_store'
-require_relative './lib/pet'
+#!/usr/bin/env ruby
 
-store = PetStore.new
-store.print_inventory
+require './lib/pet_inventory'
+require './lib/pet'
+
+inventory = PetInventory.new
+inventory.display
 
 puts "only pets that line up AFTER a big inventory: "
-p store.drop_while{|pet| pet.quantity < 500}.map(&:name)
+p inventory.drop_while{|pet| pet.quantity < 500}.map(&:name)

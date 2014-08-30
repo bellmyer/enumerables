@@ -1,11 +1,13 @@
-require_relative './lib/pet_store'
-require_relative './lib/pet'
+#!/usr/bin/env ruby
 
-store = PetStore.new
-store.print_inventory
+require './lib/pet_inventory'
+require './lib/pet'
+
+inventory = PetInventory.new
+inventory.display
 
 puts "pets grouped by two: "
-store.each_slice(2){|pets| p pets.map(&:name)}
+inventory.each_slice(2){|pets| p pets.map(&:name)}
 
 puts "pets grouped by three: "
-store.each_slice(3){|pets| p pets.map(&:name)}
+inventory.each_slice(3){|pets| p pets.map(&:name)}

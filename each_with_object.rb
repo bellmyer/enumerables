@@ -1,11 +1,13 @@
-require_relative './lib/pet_store'
-require_relative './lib/pet'
+#!/usr/bin/env ruby
 
-store = PetStore.new
-store.print_inventory
+require './lib/pet_inventory'
+require './lib/pet'
+
+inventory = PetInventory.new
+inventory.display
 
 print "list of pet names: "
-p store.each_with_object([]){|pet, array| array << pet.name}
+p inventory.each_with_object([]){|pet, array| array << pet.name}
 
 print "hash of pet names/quantities: "
-p store.each_with_object({}){|pet, hash| hash[pet.name] = pet.quantity}
+p inventory.each_with_object({}){|pet, hash| hash[pet.name] = pet.quantity}

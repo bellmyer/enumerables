@@ -1,11 +1,13 @@
-require_relative './lib/pet_store'
-require_relative './lib/pet'
+#!/usr/bin/env ruby
 
-store = PetStore.new
-store.print_inventory
+require './lib/pet_inventory'
+require './lib/pet'
+
+inventory = PetInventory.new
+inventory.display
 
 puts "pets in cascading groups of two: "
-store.each_cons(2){|pets| p pets.map(&:name) }
+inventory.each_cons(2){|pets| p pets.map(&:name) }
 
 puts "pets in cascading groups of three: "
-store.each_cons(3){|pets| p pets.map(&:name) }
+inventory.each_cons(3){|pets| p pets.map(&:name) }

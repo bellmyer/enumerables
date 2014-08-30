@@ -1,11 +1,13 @@
-require_relative './lib/pet_store'
-require_relative './lib/pet'
+#!/usr/bin/env ruby
 
-store = PetStore.new
-store.print_inventory
+require './lib/pet_inventory'
+require './lib/pet'
+
+inventory = PetInventory.new
+inventory.display
 
 print "skipping the first two pets: "
-p store.drop(2).map(&:name)
+p inventory.drop(2).map(&:name)
 
 print "skipping nothing: "
-p store.drop(0).map(&:name)
+p inventory.drop(0).map(&:name)

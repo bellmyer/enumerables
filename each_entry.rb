@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 class NumberList
   include Enumerable
   

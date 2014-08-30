@@ -1,11 +1,13 @@
-require_relative './lib/pet_store'
-require_relative './lib/pet'
+#!/usr/bin/env ruby
 
-store = PetStore.new
-store.print_inventory
+require './lib/pet_inventory'
+require './lib/pet'
+
+inventory = PetInventory.new
+inventory.display
 
 print "pets with four legs: "
-p store.select{|pet| pet.legs == 4}.map(&:name)
+p inventory.select{|pet| pet.legs == 4}.map(&:name)
 
 print "pets with less than 100 in stock: "
-p store.select{|pet| pet.quantity < 100}.map(&:name)
+p inventory.select{|pet| pet.quantity < 100}.map(&:name)

@@ -1,11 +1,13 @@
-require_relative './lib/pet_store'
-require_relative './lib/pet'
+#!/usr/bin/env ruby
 
-store = PetStore.new
-store.print_inventory
+require './lib/pet_inventory'
+require './lib/pet'
+
+inventory = PetInventory.new
+inventory.display
 
 print "types of pets: "
-puts store.count
+puts inventory.count
 
 print "types of pets with four legs: "
-puts store.count{|pet| pet.legs == 4}
+puts inventory.count{|pet| pet.legs == 4}

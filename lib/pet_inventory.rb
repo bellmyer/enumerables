@@ -1,6 +1,6 @@
 require_relative './pet'
 
-class PetStore
+class PetInventory
   include Enumerable
   
   attr_reader :pets
@@ -12,7 +12,7 @@ class PetStore
     @scorpions = Pet.new('scorpion', 8, 1)
   end
   
-  def print_inventory
+  def display
     puts "Inventory:"
     
     each do |pet|
