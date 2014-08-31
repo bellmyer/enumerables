@@ -15,6 +15,10 @@ class Pet
     quantity  == 0
   end
   
+  def low_inventory?
+    quantity < 100
+  end
+  
   def <=>(other_pet)
     quantity <=> other_pet.quantity
   end
