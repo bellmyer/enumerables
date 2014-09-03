@@ -1,12 +1,10 @@
 #!/usr/bin/env ruby
 
 require './lib/pet_inventory'
-require './lib/pet'
+require './lib/log_data'
 
 inventory = PetInventory.new
 inventory.display
-
-file = './data/pokey_things.txt'
 
 print "all pets have legs? "
 puts inventory.all?{|pet| pet.legs > 0}
@@ -20,9 +18,9 @@ puts inventory.all?{|pet| pet.quantity >= 5}
 print "if list is empty, is everything true? "
 p [].all?{|x| x == true}
 
-puts '--------'
+puts "\n--------\n\n"
 
-File.open(file) do |f|
+File.open('./data/pokey_things.txt') do |f|
   puts "pokey things: "
   puts f.read
   puts
@@ -35,3 +33,13 @@ File.open(file) do |f|
   f.seek(0)
   p f.all?{|line| line.include?('e')}
 end
+
+puts "\n--------\n\n"
+
+requests = LogData.new('./data/heroku.log')
+
+print "all heroku requests via the GET method? "
+p requests.all?{|request| request[:method] == 'GET'}
+
+print "all heroku requests under 1000ms? "
+p requests.all?{|request| request[:service] < 1000}
