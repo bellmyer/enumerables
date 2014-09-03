@@ -36,7 +36,7 @@ puts "\n--------\n\n"
 requests = LogData.new('./data/heroku.log')
 
 print "any heroku requests result in error? "
-p requests.any?{|request| request[:at] == 'error'}
+p requests.any?(&:error?)
 
 print "any missing page errors? "
-p requests.any?{|request| request[:status] == 404}
+p requests.any?{|request| request.status == 404}

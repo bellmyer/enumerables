@@ -39,7 +39,7 @@ puts "\n--------\n\n"
 requests = LogData.new('./data/heroku.log')
 
 print "all heroku requests via the GET method? "
-p requests.all?{|request| request[:method] == 'GET'}
+p requests.all?(&:get?)
 
-print "all heroku requests under 1000ms? "
-p requests.all?{|request| request[:service] < 1000}
+print "all heroku requests for the same host? "
+p requests.all?{|request| request.host == 'example.herokuapp.com'}
