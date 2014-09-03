@@ -12,7 +12,7 @@ class PetInventory
     @scorpions = Pet.new('scorpion', 8, 1)
     @beetles = Pet.new('beetle', 6, 10_000)
     @monkeys = Pet.new('monkey', 2, 2)
-    @rocks = Pet.new('rock', 0, 1)
+    @rocks = Pet.new('rock', 0, 0)
   end
   
   def display
