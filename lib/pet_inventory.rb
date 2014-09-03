@@ -10,6 +10,9 @@ class PetInventory
     @cats = Pet.new('cat', 4, 50)
     @fish = Pet.new('fish', 0, 1000)
     @scorpions = Pet.new('scorpion', 8, 1)
+    @beetles = Pet.new('beetle', 6, 10_000)
+    @monkeys = Pet.new('monkey', 2, 2)
+    @rocks = Pet.new('rock', 0, 1)
   end
   
   def display
@@ -27,5 +30,8 @@ class PetInventory
     yield @cats
     yield @fish
     yield @scorpions
+    yield @beetles
+    yield @monkeys
+    yield @rocks
   end
 end

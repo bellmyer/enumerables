@@ -1,3 +1,5 @@
+require 'digest'
+
 class Pet
   attr_reader :name, :legs, :quantity
   
@@ -21,5 +23,12 @@ class Pet
   
   def <=>(other_pet)
     quantity <=> other_pet.quantity
+  end
+  
+  def secret_code
+    code = name
+    100_000.times{ code = Digest::SHA512.hexdigest(code)[0,8] }
+    
+    code
   end
 end
