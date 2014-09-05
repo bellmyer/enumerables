@@ -1,26 +1,30 @@
 #!/usr/bin/env ruby
 
-require './lib/pet_inventory'
-require './lib/log_data'
+require './lib/initialize'
 
-inventory = PetInventory.new
-inventory.display
+print "all numbers even? "
+p @numbers.all?(&:even?)
 
-print "all pets have legs? "
-puts inventory.all?{|pet| pet.legs > 0}
-
-print "all pets are in stock? "
-puts inventory.all?(&:in_stock?)
-
-print "all pets have at least 5 in stock? "
-puts inventory.all?{|pet| pet.quantity >= 5}
+print "all numbers positive? "
+p @numbers.all?{|number| number >= 0}
 
 print "if list is empty, is everything true? "
 p [].all?{|x| x == true}
 
 puts "\n--------\n\n"
 
-File.open('./data/pokey_things.txt') do |f|
+print "all pets have legs? "
+puts @inventory.all?{|pet| pet.legs > 0}
+
+print "all pets are in stock? "
+puts @inventory.all?(&:in_stock?)
+
+print "all pets have a name? "
+puts @inventory.all?{|pet| !pet.name.nil?}
+
+puts "\n--------\n\n"
+
+File.open(@pokey_things) do |f|
   puts "pokey things: "
   puts f.read
   puts
@@ -36,10 +40,8 @@ end
 
 puts "\n--------\n\n"
 
-requests = LogData.new('./data/heroku.log')
-
 print "all heroku requests via the GET method? "
-p requests.all?(&:get?)
+p @requests.all?(&:get?)
 
 print "all heroku requests for the same host? "
-p requests.all?{|request| request.host == 'example.herokuapp.com'}
+p @requests.all?{|request| request.host == 'example.herokuapp.com'}
