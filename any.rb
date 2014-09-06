@@ -1,42 +1,45 @@
 #!/usr/bin/env ruby
 
-require './lib/pet_inventory'
-require './lib/log_data'
+require './lib/initialize'
 
-inventory = PetInventory.new
-inventory.display
+print "any numbers even? "
+p @numbers.any?(&:even?)
+
+print "any numbers negative? "
+p @numbers.any?{|number| number < 0}
+
+print "if list is empty, is anything true? "
+p [].any?(&:even?)
+
+divider
 
 print "any pets have three legs? "
-puts inventory.any?{|pet| pet.legs == 3}
+puts @inventory.any?{|pet| pet.legs == 3}
 
 print "any pets sold out? "
-puts inventory.any?(&:sold_out?)
+puts @inventory.any?(&:sold_out?)
 
 print "any pets have a quantity of just one? "
-puts inventory.any?{|pet| pet.quantity == 1}
+puts @inventory.any?{|pet| pet.quantity == 1}
 
-puts "\n--------\n\n"
+divider
 
-File.open('./data/pokey_things.txt') do |f|
-  puts "pokey things: "
-  puts f.read
-  puts
+puts "pokey things: "
+puts @pokey_things.read
+puts
 
-  print "do any pokey things have at least 5 letters? "
-  f.seek(0)
-  p f.any?{|line| line.size >= 3}
+print "do any pokey things have at least 5 letters? "
+@pokey_things.seek(0)
+p @pokey_things.any?{|line| line.size >= 5}
 
-  print "are pillows on the list of pokey things? "
-  f.seek(0)
-  p f.any?{|line| line.include?('pillow')}
-end
+print "are pillows on the list of pokey things? "
+@pokey_things.seek(0)
+p @pokey_things.any?{|line| line.include?('pillow')}
 
-puts "\n--------\n\n"
-
-requests = LogData.new('./data/heroku.log')
+divider
 
 print "any heroku requests result in error? "
-p requests.any?(&:error?)
+p @requests.any?(&:error?)
 
 print "any missing page errors? "
-p requests.any?{|request| request.status == 404}
+p @requests.any?{|request| request.status == 404}

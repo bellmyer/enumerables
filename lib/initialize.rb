@@ -5,6 +5,10 @@ require './lib/log_data'
 
 @inventory = PetInventory.new
 
-@pokey_things = './data/pokey_things.txt'
+@pokey_things = File.open('./data/pokey_things.txt', 'r')
 
 @requests = LogData.new('./data/heroku.log')
+
+def divider
+  puts "\n--------\n\n"
+end

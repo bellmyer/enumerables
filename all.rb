@@ -9,9 +9,9 @@ print "all numbers positive? "
 p @numbers.all?{|number| number >= 0}
 
 print "if list is empty, is everything true? "
-p [].all?{|x| x == true}
+p [].all?(&:even?)
 
-puts "\n--------\n\n"
+divider
 
 print "all pets have legs? "
 puts @inventory.all?{|pet| pet.legs > 0}
@@ -22,23 +22,21 @@ puts @inventory.all?(&:in_stock?)
 print "all pets have a name? "
 puts @inventory.all?{|pet| !pet.name.nil?}
 
-puts "\n--------\n\n"
+divider
 
-File.open(@pokey_things) do |f|
-  puts "pokey things: "
-  puts f.read
-  puts
+puts "pokey things: "
+puts @pokey_things.read
+puts
   
-  print "do all pokey things have at least 3 letters? "
-  f.seek(0)
-  p f.all?{|line| line.size >= 3}
+print "do all pokey things have at least 3 letters? "
+@pokey_things.seek(0)
+p @pokey_things.all?{|line| line.size >= 3}
 
-  print "do all pokey things have the letter 'e'? "
-  f.seek(0)
-  p f.all?{|line| line.include?('e')}
-end
+print "do all pokey things have the letter 'e'? "
+@pokey_things.seek(0)
+p @pokey_things.all?{|line| line.include?('e')}
 
-puts "\n--------\n\n"
+divider
 
 print "all heroku requests via the GET method? "
 p @requests.all?(&:get?)
