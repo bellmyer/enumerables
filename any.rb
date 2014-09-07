@@ -24,10 +24,6 @@ puts @inventory.any?{|pet| pet.quantity == 1}
 
 divider
 
-puts "pokey things: "
-puts @pokey_things.read
-puts
-
 print "do any pokey things have at least 5 letters? "
 @pokey_things.seek(0)
 p @pokey_things.any?{|line| line.size >= 5}
