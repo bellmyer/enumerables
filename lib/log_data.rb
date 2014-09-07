@@ -20,6 +20,17 @@ class LogData
       yield LogRecord.new(current_id, line)
     end
     
+    reset
+  end
+  
+  # reset the filehandle before each enumerable method call
+  Enumerable.instance_methods.each do |method_name|
+    define_method method_name, ->(*args, &block) {reset; super(*args, &block)}
+  end
+  
+  private
+  
+  def reset
     @fh.seek(0)
   end
 end
