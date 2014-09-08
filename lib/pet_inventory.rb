@@ -25,13 +25,9 @@ class PetInventory
     puts
   end
   
-  def each
-    yield @dogs
-    yield @cats
-    yield @fish
-    yield @scorpions
-    yield @beetles
-    yield @monkeys
-    yield @rocks
+  def each attributes = {}
+    [@dogs, @cats, @fish, @scorpions, @beetles, @monkeys, @rocks].each do |pet|
+      yield pet.with_attributes(attributes)
+    end
   end
 end

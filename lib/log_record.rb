@@ -44,6 +44,10 @@ class LogRecord
     response_time
   end
   
+  def to_s
+    "#{method} #{path}"
+  end
+  
   private
   
   def parse line

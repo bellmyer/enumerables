@@ -1,12 +1,17 @@
 require 'digest'
 
 class Pet
-  attr_reader :name, :legs, :quantity
+  attr_accessor :name, :legs, :quantity
   
   def initialize name, legs, quantity
     @name = name
     @legs = legs
     @quantity = quantity
+  end
+  
+  def with_attributes attributes
+    attributes.each{|attribute, value| send :"#{attribute}=", value}
+    self
   end
   
   def in_stock?

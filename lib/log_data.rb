@@ -10,14 +10,21 @@ class LogData
     @fh = File.open(file)
   end
   
-  def each
+  def each format = :full
     current_id = 0
     
     @fh.each do |line| 
       next unless line =~ /heroku\[router\]/
       
       current_id += 1
-      yield LogRecord.new(current_id, line)
+      record = LogRecord.new(current_id, line)
+      
+      case format
+      when :full
+        yield record
+      when :simple
+        yield record.to_s
+      end
     end
     
     reset
