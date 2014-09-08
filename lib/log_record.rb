@@ -40,6 +40,10 @@ class LogRecord
     connect + service
   end
   
+  def <=> other_record
+    response_time
+  end
+  
   private
   
   def parse line
