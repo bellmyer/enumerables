@@ -1,48 +1,35 @@
 #!/usr/bin/env ruby
 
-require './lib/pet_inventory'
-require './lib/log_data'
+require './lib/initialize'
 
-inventory = PetInventory.new
-inventory.display
+print "all numbers multiplied by two: "
+p @numbers.map{|number| number * 2}
 
-print "pet names: "
-p inventory.map(&:name)
+print "the even status for all numbers: "
+p @numbers.map(&:even?)
 
-print "pet leg counts: "
-p inventory.map{|pet| pet.legs}
+divider
 
-puts "\n--------\n\n"
-file = './data/pokey_things.txt'
+print "leg counts for all pets: "
+p @inventory.map(&:legs)
 
-File.open(file) do |f|
-  puts "pokey things: "
-  puts f.read
-  puts
+print "leg totals for each pet type: "
+p @inventory.map{|pet| pet.legs * pet.quantity}
 
-  puts "pokey things, capitalized: "
-  f.seek(0)
-  puts f.map{|line| line.capitalize}
-  puts
-  
-  puts "pokey things, truncated to 10 characters max: "
-  f.seek(0)
-  puts f.map{|line| line[0,10]}
-  puts
-  
-  puts "pokey things, in reverse: "
-  f.seek(0)
-  puts f.map(&:chomp).map{|line| line.reverse}.map{|line| line + "\n"}
-end
+divider
 
-puts "\n--------\n\n"
+print "letter counts for all pokey things: "
+@pokey_things.seek(0)
+p @pokey_things.map{|thing| thing.chomp.size}
 
-requests = LogData.new('./data/heroku.log')
+print "all pokey things, capitalized: "
+@pokey_things.seek(0)
+p @pokey_things.map(&:chomp).map(&:capitalize)
 
-puts "list of heroku request status codes: "
-p requests.map(&:status)
-puts
+divider
 
-puts "total request times: "
-p requests.map{|request| request.connect + request.service}
-puts
+print "request methods for all heroku requests: "
+p @requests.map(&:method)
+
+print "total response times for all heroku requests: "
+p @requests.map{|request| request.connect + request.service}

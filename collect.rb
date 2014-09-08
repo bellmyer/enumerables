@@ -1,43 +1,35 @@
 #!/usr/bin/env ruby
 
-require './lib/pet_inventory'
-require './lib/log_data'
+require './lib/initialize'
 
-inventory = PetInventory.new
-inventory.display
+print "all numbers multiplied by two: "
+p @numbers.collect{|number| number * 2}
 
-print "pet names: "
-p inventory.collect(&:name)
+print "whether or not each number is even: "
+p @numbers.collect(&:even?)
 
-print "pet leg counts: "
-p inventory.collect{|pet| pet.legs}
+divider
 
-puts "\n--------\n\n"
-file = './data/pokey_things.txt'
+print "leg counts for all pets: "
+p @inventory.collect(&:legs)
 
-File.open(file) do |f|
-  puts "pokey things: "
-  puts f.read
-  puts
+print "leg totals for each pet type: "
+p @inventory.collect{|pet| pet.legs * pet.quantity}
 
-  puts "pokey things, capitalized: "
-  f.seek(0)
-  puts f.collect{|line| line.capitalize}
-  puts
-  
-  puts "pokey things, truncated to 10 characters max: "
-  f.seek(0)
-  puts f.collect{|line| line[0,10]}
-end
+divider
 
-puts "\n--------\n\n"
+print "letter counts for all pokey things: "
+@pokey_things.seek(0)
+p @pokey_things.collect{|thing| thing.chomp.size}
 
-requests = LogData.new('./data/heroku.log')
+print "all pokey things, capitalized: "
+@pokey_things.seek(0)
+p @pokey_things.collect(&:chomp).collect(&:capitalize)
 
-puts "list of heroku request status codes: "
-p requests.collect(&:status)
-puts
+divider
 
-puts "total request times: "
-p requests.collect{|request| request.connect + request.service}
-puts
+print "request methods for all heroku requests: "
+p @requests.collect(&:method)
+
+print "total response times for all heroku requests: "
+p @requests.collect{|request| request.connect + request.service}
