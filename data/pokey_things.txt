@@ -1,4 +1,4 @@
 cactus
-poles
+pole
 knife
 cactus holding poles with knives attached
