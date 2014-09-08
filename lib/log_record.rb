@@ -36,6 +36,10 @@ class LogRecord
     [200, 302].include?(status)
   end
   
+  def response_time
+    connect + service
+  end
+  
   private
   
   def parse line
