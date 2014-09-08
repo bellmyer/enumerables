@@ -44,7 +44,7 @@ class LogRecord
     response_time
   end
   
-  def to_s
+  def simple
     "#{method} #{path}"
   end
   

@@ -23,7 +23,7 @@ class LogData
       when :full
         yield record
       when :simple
-        yield record.to_s
+        yield record.simple
       end
     end
     
